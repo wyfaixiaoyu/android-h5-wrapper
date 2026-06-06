@@ -4,7 +4,7 @@
 
 ## 功能
 
-- 基于 WebView 的 H5 应用
+- 基于 WebView 的 H5 haola应用
 - 支持 JavaScript 和 DOM Storage
 - 支持缩放和手势操作
 - 支持返回键导航
