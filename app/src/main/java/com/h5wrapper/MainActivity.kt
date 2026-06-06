@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -106,6 +105,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupTripleTapListener() {
         webView.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
@@ -122,7 +122,6 @@ class MainActivity : AppCompatActivity() {
                 if (tapCount == REQUIRED_TAPS) {
                     tapCount = 0
                     showUrlInputDialog()
-                    return true
                 }
             }
             false
@@ -133,10 +132,13 @@ class MainActivity : AppCompatActivity() {
             if (keyCode == android.view.KeyEvent.KEYCODE_BACK && event.action == android.view.KeyEvent.ACTION_DOWN) {
                 if (webView.canGoBack()) {
                     webView.goBack()
-                    return@setOnKeyListener true
+                    true
+                } else {
+                    false
                 }
+            } else {
+                false
             }
-            false
         }
     }
 
