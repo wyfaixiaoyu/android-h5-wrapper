@@ -4,17 +4,17 @@ on:
   push:
     branches: [ main, master ]
   workflow_dispatch:
-  env:
-    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-    - uses: actions/checkout@v5
+    - name: Checkout repository
+      uses: actions/checkout@v5
 
     - name: Set up JDK 17
       uses: actions/setup-java@v5
@@ -22,16 +22,20 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Download and extract Gradle
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Download Gradle
       run: |
-        wget -q https://services.gradle.org/distributions/gradle-8.0-bin.zip
-        unzip -q gradle-8.0-bin.zip
-        export PATH=$PATH:$(pwd)/gradle-8.0/bin
+        wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
+        unzip -q gradle-8.5-bin.zip
 
     - name: Generate Gradle Wrapper
       run: |
-        export PATH=$PATH:$(pwd)/gradle-8.0/bin
-        gradle wrapper --gradle-version 8.0
+        ./gradle-8.5/bin/gradle wrapper --gradle-version 8.5
+
+    - name: Grant execute permission
+      run: chmod +x gradlew
 
     - name: Build Debug APK
       run: ./gradlew assembleDebug --stacktrace
