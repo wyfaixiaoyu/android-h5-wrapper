@@ -119,14 +119,19 @@ class MainActivity : AppCompatActivity() {
                 handleGeolocationPermission(origin, callback)
             }
         }
-
-        // WebViewClient to handle page navigation
+        
+        // WebViewClient for page loading progress
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 url?.let {
                     view?.loadUrl(it)
                 }
                 return true
+            }
+            
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                // Page finished loading
             }
         }
 

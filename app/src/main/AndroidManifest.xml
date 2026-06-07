@@ -21,8 +21,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <!-- Splash Activity (Launcher) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="unspecified">
             <intent-filter>
@@ -30,6 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main Activity (WebView) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="unspecified" />
 
     </application>
 
