@@ -49,6 +49,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun enableFullscreen() {
+        // Allow content to extend into display cutout area
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.attributes.layoutInDisplayCutoutMode = 
+                android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+
         // Method 1: Window flags for fullscreen
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
