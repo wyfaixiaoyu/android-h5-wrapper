@@ -1,4 +1,4 @@
-# Haola H5 Android Wrapper
+# Haola Android App
 
 一个将 Haola H5 网站包装成 Android 应用的项目。
 
