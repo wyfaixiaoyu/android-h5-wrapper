@@ -25,12 +25,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set status bar color to white
+        // Set status bar and navigation bar colors to white
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = android.graphics.Color.WHITE
+            window.navigationBarColor = android.graphics.Color.WHITE
         }
 
-        // Enable fullscreen mode before setting content view
+        // Enable fullscreen mode
         enableFullscreen()
 
         // Create WebView programmatically
@@ -49,30 +50,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun enableFullscreen() {
-        // Allow content to extend into display cutout area
+        // Allow content to extend into display cutout area (for punch-hole cameras)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode = 
                 android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
 
-        // Method 1: Window flags for fullscreen
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        // Layout in screen edges, but keep status bar visible
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-        // Method 2: Immersive mode - hide both status bar and navigation bar
+        // Hide navigation bar only, keep status bar visible
         window.decorView.systemUiVisibility = (
             View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
             or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
             or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-            or View.SYSTEM_UI_FLAG_FULLSCREEN
         )
     }
 
