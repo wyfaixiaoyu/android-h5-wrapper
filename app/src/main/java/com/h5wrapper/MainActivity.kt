@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Set status bar color to white
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = android.graphics.Color.WHITE
+        }
+
         // Enable fullscreen mode before setting content view
         enableFullscreen()
 
