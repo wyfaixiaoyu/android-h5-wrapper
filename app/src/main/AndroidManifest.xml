@@ -36,7 +36,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:label=""
+            android:label="DebugLabel"
             android:screenOrientation="unspecified" />
 
     </application>
