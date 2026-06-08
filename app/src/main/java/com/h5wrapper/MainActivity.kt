@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var webView: WebView
-    private val URL = "https://www.baidu.com"
+    private val URL = "https://tapp.yuxiaor.com"
     private val LOCATION_PERMISSION_REQUEST = 1001
 
     @SuppressLint("SetJavaScriptEnabled")
