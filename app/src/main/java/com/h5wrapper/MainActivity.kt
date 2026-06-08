@@ -132,7 +132,8 @@ class MainActivity : AppCompatActivity() {
             
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                // Page finished loading
+                // Inject JavaScript to hide H5 page header
+                hideH5Header()
             }
         }
 
@@ -205,5 +206,32 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    private fun hideH5Header() {
+        // JavaScript to hide H5 page header containing "Haola"
+        val js = """
+            (function() {
+                var selectors = [
+                    '.header', '.navbar', '.nav-header', '.page-header',
+                    '[class*="header"]', '[class*="navbar"]', '[class*="nav-bar"]',
+                    '[class*="topbar"]', '[class*="top-bar"]',
+                    '.van-nav-bar', '.mint-navbar', 'header', 'nav'
+                ];
+                
+                selectors.forEach(function(selector) {
+                    try {
+                        var elements = document.querySelectorAll(selector);
+                        elements.forEach(function(el) {
+                            if (el && el.textContent && el.textContent.includes('Haola')) {
+                                el.style.display = 'none';
+                            }
+                        });
+                    } catch(e) {}
+                });
+            })();
+        """.trimIndent()
+        
+        webView.evaluateJavascript(js, null)
     }
 }
