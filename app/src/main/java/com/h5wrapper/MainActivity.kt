@@ -32,12 +32,6 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        // Set status bar and navigation bar colors to white
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = android.graphics.Color.WHITE
-            window.navigationBarColor = android.graphics.Color.WHITE
-        }
-
         // Enable fullscreen mode
         enableFullscreen()
 
