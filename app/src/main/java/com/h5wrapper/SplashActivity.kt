@@ -56,10 +56,8 @@ class SplashActivity : AppCompatActivity() {
         container.addView(progressBar)
         setContentView(container)
         
-        // Navigate to main activity after delay
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }, SPLASH_DELAY)
+        // Navigate to main activity immediately
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
