@@ -43,6 +43,12 @@ class MainActivity : AppCompatActivity() {
         )
         setContentView(webView)
 
+        // Hide action bar if exists
+        supportActionBar?.hide()
+        
+        // Make title bar background transparent
+        window.setBackgroundDrawable(null)
+
         // Configure WebView
         setupWebView()
 
