@@ -208,9 +208,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideH5Header() {
-        // JavaScript to hide H5 page header containing "Haola"
+        // JavaScript to hide "Haola" header and style DebugLabel
         val js = """
             (function() {
+                // Hide elements containing "Haola"
                 var selectors = [
                     '.header', '.navbar', '.nav-header', '.page-header',
                     '[class*="header"]', '[class*="navbar"]', '[class*="nav-bar"]',
@@ -228,6 +229,17 @@ class MainActivity : AppCompatActivity() {
                         });
                     } catch(e) {}
                 });
+                
+                // Change DebugLabel background color to dark blue
+                try {
+                    var debugElements = document.querySelectorAll('*');
+                    debugElements.forEach(function(el) {
+                        if (el.textContent && el.textContent.includes('DebugLabel')) {
+                            el.style.backgroundColor = '#00008B';
+                            el.style.color = '#FFFFFF';
+                        }
+                    });
+                } catch(e) {}
             })();
         """.trimIndent()
         
